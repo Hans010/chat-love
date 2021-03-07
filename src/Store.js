@@ -6,13 +6,11 @@ export const CTX = React.createContext();
 
 const initState = {
     hansBelo: [
-        {from: 'Belo', msg: 'No filter, só câmara com má qualidade. Sente estes 28 anos'},
-        {from: 'Hans', msg: 'fiu fiu'},
-        {from: 'Hans', msg: 'crl, gosto muito'}
+        {from: 'Belo', msg: 'Just another project in "you have to start somewhere" series, right?'},
+        {from: 'Hans', msg: 'oh yeah, baby!'},
+        {from: 'Hans', msg: 'Still much to do, man... :/'}
     ],
-    general: [
-
-    ],
+    general: [],
     misc: []
 }
 
@@ -22,6 +20,8 @@ const reducer = (state, action) => {
 
     switch (action.type) {
         case'RECEIVE_MESSAGE':
+            // make a change in this string
+            console.log('if anything is changed in this string, state begins to update.. .');
             return {
                 ...state,
                 [topic]: [
@@ -50,8 +50,8 @@ const Store = (props) => {
 
     if (!socket) {
         socket = io(':3001');
-        socket.on('chat message', msg =>  {
-          dispatch({type:'RECEIVE_MESSAGE', payload: msg})
+        socket.on('chat message', msg => {
+            dispatch({type: 'RECEIVE_MESSAGE', payload: msg})
         });
     }
 
