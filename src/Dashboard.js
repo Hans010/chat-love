@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -52,10 +52,11 @@ const Dashboard = (props) => {
 
     const classes = useStyles();
 
-    const sendMessage = () => {
-        console.log('sending');
+    const sendMessage = (e) => {
+        e.preventDefault();
         sendChatAction({msg: textValue, from: user, topic: activeTopic});
         setTextValue('');
+        console.log(allChats);
     }
 
     return (
@@ -90,7 +91,7 @@ const Dashboard = (props) => {
                         }
                     </div>
                 </div>
-                    <form onSubmit={sendMessage} className={classes.flex}>
+                    <form onSubmit={(e) => sendMessage(e)} className={classes.flex}>
                         <TextField
                             label="Enter message"
                             className={classes.chatBox}
